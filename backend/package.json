@@ -1,0 +1,18 @@
+{
+  "name": "cart3r-radar-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "CART3R: radar — defensive fraud-monitoring API (zero dependencies, Node 22.5+)",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch src/server.js",
+    "seed": "node --disable-warning=ExperimentalWarning src/seed.js",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.js",
+    "create-user": "node --disable-warning=ExperimentalWarning src/create-user.js"
+  },
+  "license": "MIT"
+}

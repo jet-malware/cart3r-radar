@@ -1,0 +1,29 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      CART3R_TRUST_PROXY: "1"
+      CART3R_SECURE_COOKIES: "1"
+    volumes:
+      - radar-data:/app/backend/data      # здесь хранится база SQLite
+    expose:
+      - "4000"
+
+  caddy:                                    # HTTPS-сертификаты выпускаются и продлеваются автоматически
+    image: caddy:2
+    restart: unless-stopped
+    depends_on: [app]
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+
+volumes:
+  radar-data:
+  caddy-data:
