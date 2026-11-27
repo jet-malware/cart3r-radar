@@ -1,5 +1,5 @@
 # Этап 1: сборка интерфейса на React
-FROM node:22-alpine AS web
+FROM node:26-alpine AS web
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install
@@ -7,7 +7,7 @@ COPY frontend ./
 RUN npm run build
 
 # Этап 2: API и собранный интерфейс в одном небольшом образе
-FROM node:22-alpine
+FROM node:26-alpine
 ENV NODE_ENV=production
 WORKDIR /app
 COPY backend ./backend
